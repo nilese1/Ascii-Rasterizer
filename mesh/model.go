@@ -2,8 +2,8 @@ package mesh
 
 
 import (
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/vector"
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/rasterizer"
+	"github.com/nilese1/Ascii-Rasterizer/vector"
+	"github.com/nilese1/Ascii-Rasterizer/rasterizer"
 )
 
 

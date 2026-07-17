@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/rasterizer"
+	"github.com/nilese1/Ascii-Rasterizer/rasterizer"
 )
 
 const CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "

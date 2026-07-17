@@ -5,9 +5,9 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/mesh"
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/rasterizer"
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/vector"
+	"github.com/nilese1/Ascii-Rasterizer/mesh"
+	"github.com/nilese1/Ascii-Rasterizer/rasterizer"
+	"github.com/nilese1/Ascii-Rasterizer/vector"
 )
 
 var (
@@ -56,11 +56,11 @@ func rotateModel(model *mesh.Model, translation vector.Vec3) {
 func renderModel(model *mesh.Model) {
 	var screen [rasterizer.SCREEN_HEIGHT][rasterizer.SCREEN_WIDTH]pixel
 
-	for i := 0; i < rasterizer.SCREEN_HEIGHT; i++ {
-		for x := 0; x < rasterizer.SCREEN_WIDTH; x++ {
+	for y := range rasterizer.SCREEN_HEIGHT {
+		for x := range rasterizer.SCREEN_WIDTH {
 			p := pixel{0, 0, 0, 0}
 
-			hits, tri := triInPixel(x, i, model.Triangles)
+			hits, tri := triInPixel(x, y, model.Triangles)
 			if hits {
 				normal := tri.GetNormal()
 				light := (1 + vector.Dot3(&SUN_DIR, &normal)) * 0.5
@@ -73,7 +73,7 @@ func renderModel(model *mesh.Model) {
 				p.light = light
 			}
 
-			screen[i][x] = p
+			screen[y][x] = p
 		}
 	}
 
@@ -86,7 +86,6 @@ func spinningObject(file_path string) {
 	model.Enlarge(MODEL_ENLARGEMENT)
 	model.Translate(MODEL_TRANSLATION)
 
-	
 	for {
 		rotateModel(&model, MODEL_TRANSLATION)
 		renderModel(&model)

@@ -3,7 +3,7 @@ package rasterizer
 
 import (
 	"math"
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/vector"
+	"github.com/nilese1/Ascii-Rasterizer/vector"
 )
 
 

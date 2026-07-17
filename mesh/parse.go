@@ -4,8 +4,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/rasterizer"
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/vector"
+	"github.com/nilese1/Ascii-Rasterizer/rasterizer"
+	"github.com/nilese1/Ascii-Rasterizer/vector"
 )
 
 

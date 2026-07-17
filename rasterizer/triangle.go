@@ -2,7 +2,7 @@ package rasterizer
 
 
 import (
-	"github.com/Ben-Edwards44/Ascii-Rasterizer/vector"
+	"github.com/nilese1/Ascii-Rasterizer/vector"
 )
 
 type Triangle struct {
