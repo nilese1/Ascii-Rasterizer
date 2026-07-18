@@ -1,7 +1,7 @@
 package rasterizer
 
-
 import (
+	sc "github.com/nilese1/Ascii-Rasterizer/scene"
 	"github.com/nilese1/Ascii-Rasterizer/vector"
 )
 
@@ -10,34 +10,12 @@ type Triangle struct {
 	world_b vector.Vec3
 	world_c vector.Vec3
 
-	screen_a vector.Vec2
-	screen_b vector.Vec2
-	screen_c vector.Vec2
-
 	normal_vec vector.Vec3
-
-	ab_out vector.Vec2
-	bc_out vector.Vec2
-	ca_out vector.Vec2
 }
-
 
 func CreateTriangle(world_a vector.Vec3, world_b vector.Vec3, world_c vector.Vec3, normal vector.Vec3) Triangle {
-	a := convertToScreen(world_a)
-	b := convertToScreen(world_b)
-	c := convertToScreen(world_c)
-
-	ab := vector.Sub(b, a)
-	bc := vector.Sub(c, b)
-	ca := vector.Sub(a, c)
-
-	ab_out := ab.Rot90()
-	bc_out := bc.Rot90()
-	ca_out := ca.Rot90()
-
-	return Triangle{world_a, world_b, world_c, a, b, c, normal.Normalise(), ab_out, bc_out, ca_out}
+	return Triangle{world_a, world_b, world_c, normal.Normalise()}
 }
-
 
 func (tri *Triangle) GetWorldCenter() vector.Vec3 {
 	x := (tri.world_a.X + tri.world_b.X + tri.world_c.X) / 3
@@ -47,11 +25,9 @@ func (tri *Triangle) GetWorldCenter() vector.Vec3 {
 	return vector.Vec3{X: x, Y: y, Z: z}
 }
 
-
 func (tri *Triangle) GetNormal() vector.Vec3 {
 	return tri.normal_vec
 }
-
 
 func (tri *Triangle) Rotate(rot_x float64, rot_y float64, rot_z float64) Triangle {
 	new_a := tri.world_a.Rotate(rot_x, rot_y, rot_z)
@@ -62,7 +38,6 @@ func (tri *Triangle) Rotate(rot_x float64, rot_y float64, rot_z float64) Triangl
 	return CreateTriangle(new_a, new_b, new_c, new_normal)
 }
 
-
 func (tri *Triangle) Translate(translation vector.Vec3) Triangle {
 	new_a := vector.Add(tri.world_a, translation)
 	new_b := vector.Add(tri.world_b, translation)
@@ -71,8 +46,7 @@ func (tri *Triangle) Translate(translation vector.Vec3) Triangle {
 	return CreateTriangle(new_a, new_b, new_c, tri.normal_vec)
 }
 
-
-func (tri *Triangle) Enlarge(scale_factor float64) Triangle {
+func (tri *Triangle) Scale(scale_factor float64) Triangle {
 	new_a := tri.world_a.Mul(scale_factor)
 	new_b := tri.world_b.Mul(scale_factor)
 	new_c := tri.world_c.Mul(scale_factor)
@@ -80,11 +54,22 @@ func (tri *Triangle) Enlarge(scale_factor float64) Triangle {
 	return CreateTriangle(new_a, new_b, new_c, tri.normal_vec)
 }
 
+func (tri *Triangle) PointInTri(point vector.Vec2, scene *sc.Scene) bool {
+	a := convertToScreen(tri.world_a, scene)
+	b := convertToScreen(tri.world_b, scene)
+	c := convertToScreen(tri.world_c, scene)
 
-func (tri *Triangle) PointInTri(point vector.Vec2) bool {
-	ap := vector.Sub(point, tri.screen_a)
-	bp := vector.Sub(point, tri.screen_b)
-	cp := vector.Sub(point, tri.screen_c)
+	ap := vector.Sub(point, a)
+	bp := vector.Sub(point, b)
+	cp := vector.Sub(point, c)
 
-	return vector.VecsSameDir(ap, tri.ab_out) && vector.VecsSameDir(bp, tri.bc_out) && vector.VecsSameDir(cp, tri.ca_out)
+	ab := vector.Sub(b, a)
+	bc := vector.Sub(c, b)
+	ca := vector.Sub(a, c)
+
+	ab_out := ab.Rot90()
+	bc_out := bc.Rot90()
+	ca_out := ca.Rot90()
+
+	return vector.VecsSameDir(ap, ab_out) && vector.VecsSameDir(bp, bc_out) && vector.VecsSameDir(cp, ca_out)
 }

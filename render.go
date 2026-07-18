@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/nilese1/Ascii-Rasterizer/rasterizer"
+
+	sc "github.com/nilese1/Ascii-Rasterizer/scene"
 )
 
 const CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
@@ -15,7 +16,7 @@ type pixel struct {
 	light float64
 }
 
-func moveCursor(lines int, move_up bool) {
+func moveCursor(lines uint32, move_up bool) {
 	char := 'B'
 	if move_up {
 		char = 'A'
@@ -43,7 +44,12 @@ func getChar(light float64) string {
 	return string(CHARS[char_inx])
 }
 
-func printScreen(pixels [rasterizer.SCREEN_HEIGHT][rasterizer.SCREEN_WIDTH]pixel) {
+func printScreen(pixels [][]pixel, scene *sc.Scene, headers ...string) {
+	setColour(255, 255, 255)
+	for _, header := range headers {
+		fmt.Print(header, "\n")
+	}
+
 	for _, row := range pixels {
 		for _, pixel := range row {
 			setColour(pixel.r, pixel.g, pixel.b)
@@ -55,5 +61,5 @@ func printScreen(pixels [rasterizer.SCREEN_HEIGHT][rasterizer.SCREEN_WIDTH]pixel
 		fmt.Print("\n")
 	}
 
-	moveCursor(rasterizer.SCREEN_HEIGHT, true)
+	moveCursor(scene.ScreenHeight+uint32(len(headers)), true)
 }
