@@ -1,4 +1,4 @@
-package main
+package asciiraster
 
 import (
 	"fmt"
@@ -40,6 +40,10 @@ func ResetCursor(scenes []sc.Scene, headers ...string) {
 	moveCursor(sc.GetTotalHeight(scenes)+uint32(len(headers)), true)
 }
 
+func HideCursor() {
+	fmt.Print("\033[?25l")
+}
+
 func moveCursor(lines uint32, move_up bool) {
 	char := 'B'
 	if move_up {
@@ -51,10 +55,6 @@ func moveCursor(lines uint32, move_up bool) {
 
 func setColour(r int, g int, b int) {
 	fmt.Printf("\033[38;2;%v;%v;%vm", r, g, b)
-}
-
-func hideCursor() {
-	fmt.Print("\033[?25l")
 }
 
 func showCursor() {

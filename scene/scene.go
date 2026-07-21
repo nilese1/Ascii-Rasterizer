@@ -20,7 +20,7 @@ type Scene struct {
 func CreateScene(model *rasterizer.Model) *Scene {
 	return &Scene{
 		SceneWidth:      100,
-		SceneHeight:     20,
+		SceneHeight:     40,
 		CamFOV:          math.Pi / 3,
 		ViewPlaneHeight: math.Tan(math.Pi / 6),
 
@@ -43,7 +43,7 @@ func (scene *Scene) ConvertToScreen(point vector.Vec3) vector.Vec2 {
 	return vector.Vec2{X: offset_x, Y: offset_y}
 }
 
-func (scene *Scene) GetTriInPixel( pixel_x uint32, pixel_y uint32, tris []rasterizer.Triangle) (bool, rasterizer.Triangle) {
+func (scene *Scene) GetTriInPixel(pixel_x uint32, pixel_y uint32, tris []rasterizer.Triangle) (bool, rasterizer.Triangle) {
 	point := vector.Vec2{X: float64(pixel_x), Y: float64(pixel_y)}
 
 	hit := false
