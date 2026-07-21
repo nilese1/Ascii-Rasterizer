@@ -5,10 +5,10 @@ import (
 	"os"
 	"os/signal"
 
-	ar "github.com/nilese1/Ascii-Rasterizer"
-	"github.com/nilese1/Ascii-Rasterizer/rasterizer"
-	sc "github.com/nilese1/Ascii-Rasterizer/scene"
-	"github.com/nilese1/Ascii-Rasterizer/vector"
+	ar "github.com/nilese1/asciiraster"
+	"github.com/nilese1/asciiraster/rasterizer"
+	sc "github.com/nilese1/asciiraster/scene"
+	"github.com/nilese1/asciiraster/vector"
 )
 
 func randAngle(max_angle float64) float64 {

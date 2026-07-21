@@ -4,7 +4,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/nilese1/Ascii-Rasterizer/vector"
+	"github.com/nilese1/asciiraster/vector"
 )
 
 const DIGITS = "0123456789.-"

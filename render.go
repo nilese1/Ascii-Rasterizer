@@ -3,7 +3,7 @@ package asciiraster
 import (
 	"fmt"
 
-	sc "github.com/nilese1/Ascii-Rasterizer/scene"
+	sc "github.com/nilese1/asciiraster/scene"
 )
 
 const CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "

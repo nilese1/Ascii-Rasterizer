@@ -1,9 +1,9 @@
 package asciiraster
 
 import (
-	"github.com/nilese1/Ascii-Rasterizer/rasterizer"
-	sc "github.com/nilese1/Ascii-Rasterizer/scene"
-	"github.com/nilese1/Ascii-Rasterizer/vector"
+	"github.com/nilese1/asciiraster/rasterizer"
+	sc "github.com/nilese1/asciiraster/scene"
+	"github.com/nilese1/asciiraster/vector"
 )
 
 var (

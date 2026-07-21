@@ -1,7 +1,7 @@
 package rasterizer
 
 import (
-	"github.com/nilese1/Ascii-Rasterizer/vector"
+	"github.com/nilese1/asciiraster/vector"
 )
 
 type Triangle struct {

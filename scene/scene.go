@@ -3,8 +3,8 @@ package scene
 import (
 	"math"
 
-	"github.com/nilese1/Ascii-Rasterizer/rasterizer"
-	"github.com/nilese1/Ascii-Rasterizer/vector"
+	"github.com/nilese1/asciiraster/rasterizer"
+	"github.com/nilese1/asciiraster/vector"
 )
 
 type Scene struct {
